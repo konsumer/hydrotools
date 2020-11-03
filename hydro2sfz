@@ -1,0 +1,38 @@
+#!/usr/bin/env python3
+
+import sys
+import os
+
+sys.path.append(os.path.dirname(os.path.abspath(__file__)) + "/lib")
+sys.path.append(os.path.dirname(os.path.abspath(__file__)) + "/lib/freepats-tools")
+
+from sfz import SFZ
+from hydrogen import Hydrogen
+
+def hydro2sfz(hydrofile, sfzfile):
+  hydro = Hydrogen(hydrofile)
+  sfz = SFZ()
+
+  sfz.soundBank = {
+  'Name': 'Unnamed sound bank',
+  'Date': time.strftime("%Y-%m-%d"),
+  'instruments': [{
+    'Instrument': 'Unnamed instrument',
+    'ampeg_release': '0.5',
+    'groups': [{
+      'loop_mode': 'no_loop',
+        'regions': []
+        }]
+    }]
+  }
+
+  # TODO: add all the instruments and stuff
+
+  sfz.exportSFZ(sfzfile)
+
+if __name__ == "__main__":
+  try:
+    hydro2sfz(sys.argv[1], sys.argv[2])
+  except:
+    print("hydro2sfz <HYDROKIT_FILE> <SFZ_FILE>")
+    print("\tConvert a hydrogen drumkit to a SFZ soundfont")
