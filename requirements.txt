@@ -38,3 +38,5 @@ dateutils==0.6.12
 python-dateutil==2.8.1
 numpy==1.19.4
 SoundFile==0.10.3.post1
+requests==2.24.0
+untangle==1.1.1

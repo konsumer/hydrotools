@@ -6,6 +6,7 @@ Various tools written in python3 to convert hydrogen to other formats.
 hydro2sfz <HYDROKIT_FILE> <SFZ_FILE>          # generate SFZ file
 hydro2sf2 <HYDROKIT_FILE> <SF2_FILE>          # generate SF2 file
 hydro2renoise <HYDROKIT_FILE> <RENOISE_FILE>  # generate renoise instrument
+getallkits                                    # download all public kits
 ```
 
 ## WIP
