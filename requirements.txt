@@ -40,3 +40,4 @@ numpy==1.19.4
 SoundFile==0.10.3.post1
 requests==2.24.0
 untangle==1.1.1
+html2text==2020.1.16

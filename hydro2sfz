@@ -5,31 +5,24 @@ import os
 import time
 
 sys.path.append(os.path.dirname(os.path.abspath(__file__)) + "/lib")
-sys.path.append(os.path.dirname(os.path.abspath(__file__)) + "/lib/freepats-tools")
 
-from sfz import SFZ
 from hydrogen import Hydrogen
 
 def hydro2sfz(hydrofile, sfzfile):
-  hydro = Hydrogen(hydrofile)
-  sfz = SFZ()
+  hydro = Hydrogen(hydrofile, os.path.dirname(sfzfile))
+  
+  sfz = """//+ Name: %s
+//+ Date: %s
+<global>loop_mode=one_shot
+""" % (hydro.name, time.strftime("%Y-%m-%d"))
 
-  sfz.soundBank = {
-  'Name': 'Unnamed sound bank',
-  'Date': time.strftime("%Y-%m-%d"),
-  'instruments': [{
-    'Instrument': 'Unnamed instrument',
-    'ampeg_release': '0.5',
-    'groups': [{
-      'loop_mode': 'no_loop',
-        'regions': []
-        }]
-    }]
-  }
+  for instrument in hydro.instruments:
+    for layer in instrument["layers"]:
+      sfz = sfz + "\n<region>key=%d lovel=%d hivel=%d sample=%s" % (instrument["region"] + 72, layer["min"] * 127, layer["max"] * 127, layer["file"])
 
-  # TODO: add all the instruments and stuff
-
-  sfz.exportSFZ(sfzfile)
+  file = open(sfzfile,"w") 
+  file.write(sfz)
+  file.close()
 
 if __name__ == "__main__":
   try:
