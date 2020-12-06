@@ -17,5 +17,5 @@ I'm still working on it.
 In order to use these, you'll need python3 and other dependencies:
 
 ```sh
-pip3 -r requirements.txt
+pip3 install -r requirements.txt
 ```
