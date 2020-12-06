@@ -6,6 +6,12 @@ import sys
 import os
 
 outdir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "kits")
+
+try:
+  os.mkdir(outdir)
+except FileExistsError:
+  pass
+
 doc = untangle.parse(requests.get("http://hydrogen-music.org/feeds/drumkit_list.php").text)
 
 def download(url, filename):
@@ -29,5 +35,6 @@ for kit in doc.drumkit_list.drumkit:
   name = kit.name.cdata
   url = kit.url.cdata
   filename = os.path.join(outdir, "%s.h2drumkit" % (name)).replace(' (sf)', '').replace(' (flac)', '').replace(' (Flac edition)', '')
-  print("\nDownloading %s to %s" % (name, filename))
-  download(url, filename)
+  if not os.path.exists(filename):
+    print("\nDownloading %s to %s" % (name, filename))
+    download(url, filename)
