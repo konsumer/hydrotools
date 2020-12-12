@@ -8,9 +8,14 @@ class Hydrogen:
     self.filename = filename
     self.outdir = outdir
     self.archive = tarfile.open(filename, "r")
-    self.archive.extractall(outdir)
     for t in self.archive.getmembers():
-      if os.path.basename(t.name) == 'drumkit.xml':
+      if t.type == tarfile.DIRTYPE:
+        os.mkdir(t.name)
+      elif os.path.basename(t.name) != 'drumkit.xml':
+        o = open(t.name, 'wb')
+        o.write(self.archive.extractfile(t).read())
+        o.close()
+      else:
         self.xml = self.archive.extractfile(t).read().decode('utf8')
         self.doc = untangle.parse(self.xml)
         self.name = self.doc.drumkit_info.name.cdata
@@ -47,6 +52,5 @@ class Hydrogen:
                 "pitch": float(l.pitch.cdata),
                 "file": "%s/%s" % (self.dirname, l.filename.cdata)
               })
-          
           self.instruments.append(instrument)
 

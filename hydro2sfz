@@ -27,6 +27,7 @@ def hydro2sfz(hydrofile, sfzfile):
 if __name__ == "__main__":
   try:
     hydro2sfz(sys.argv[1], sys.argv[2])
-  except:
+  except Exception as e:
+    print(e)
     print("hydro2sfz <HYDROKIT_FILE> <SFZ_FILE>")
     print("\tConvert a hydrogen drumkit to a SFZ soundfont")
