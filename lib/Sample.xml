@@ -1,0 +1,39 @@
+<Sample>
+  <SelectedPresetName>$name</SelectedPresetName>
+  <SelectedPresetIsModified>true</SelectedPresetIsModified>
+  <Name>$name</Name>
+  <Volume>1.0</Volume>
+  <Panning>0.5</Panning>
+  <Transpose>0</Transpose>
+  <Finetune>0</Finetune>
+  <BeatSyncIsActive>false</BeatSyncIsActive>
+  <BeatSyncMode>Repitch</BeatSyncMode>
+  <BeatSyncLines>16</BeatSyncLines>
+  <OneShotTrigger>false</OneShotTrigger>
+  <NewNoteAction>NoteOff</NewNoteAction>
+  <Oversample>false</Oversample>
+  <InterpolationMode>Cubic</InterpolationMode>
+  <AutoSeek>false</AutoSeek>
+  <AutoFade>false</AutoFade>
+  <LoopMode>Off</LoopMode>
+  <LoopRelease>false</LoopRelease>
+  <SingleSliceTriggerEnabled>true</SingleSliceTriggerEnabled>
+  <IsAlias>false</IsAlias>
+  <MuteGroupIndex>-1</MuteGroupIndex>
+  <ModulationSetIndex>0</ModulationSetIndex>
+  <DeviceChainIndex>-1</DeviceChainIndex>
+  <Mapping>
+    <Layer>Note-On Layer</Layer>
+    <BaseNote>$notenum</BaseNote>
+    <NoteStart>$notenum</NoteStart>
+    <NoteEnd>$notenum</NoteEnd>
+    <MapKeyToPitch>true</MapKeyToPitch>
+    <VelocityStart>0</VelocityStart>
+    <VelocityEnd>127</VelocityEnd>
+    <MapVelocityToVolume>true</MapVelocityToVolume>
+  </Mapping>
+  <SelectionRangeStart>-1</SelectionRangeStart>
+  <SelectionRangeEnd>-1</SelectionRangeEnd>
+  <SelectedChannel>L+R</SelectedChannel>
+  <VZoomFactor>1.0</VZoomFactor>
+</Sample>

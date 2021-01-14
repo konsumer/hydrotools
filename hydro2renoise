@@ -1,1 +1,44 @@
 #!/usr/bin/env python3
+
+import sys
+import os
+import time
+import zipfile
+from string import Template
+import shutil
+
+dirLib = os.path.join(os.path.dirname(os.path.abspath(__file__)), "lib")
+
+sys.path.append(dirLib)
+
+from hydrogen import Hydrogen
+
+tInstrument = Template(open(os.path.join(dirLib, 'Instrument.xml')).read())
+tSample = Template(open(os.path.join(dirLib, 'Sample.xml')).read())
+
+def hydro2renoise(hydrofile, renoisefile):
+  outdir = '/tmp'
+  if outdir == '':
+    outdir = '.'
+  hydro = Hydrogen(hydrofile, outdir)
+  sampleset = "\n".join([tSample.substitute(name=i['name'], notenum=i['region'] + 48) for i in hydro.instruments])
+  instrumentText = tInstrument.substitute(name=hydro.name, sampleset=sampleset)
+  with zipfile.ZipFile(renoisefile, 'w', compression=zipfile.ZIP_DEFLATED) as zip:
+    zip.writestr("Instrument.xml", instrumentText)
+    samples=0
+    for i in hydro.instruments:
+      for s in i['layers']:
+        _filename, file_extension = os.path.splitext(s['file'])
+        zip.write(os.path.join(outdir, s['file']), f'SampleData/Sample{samples:02}({i["name"]}){file_extension}')
+        samples = samples + 1
+
+if __name__ == "__main__":
+  try:
+    sys.argv[1]
+    sys.argv[2]
+  except Exception as e:
+    print(e)
+    print("hydro2renoise <HYDROKIT_FILE> <RENOISE_FILE>")
+    print("\tConvert a hydrogen drumkit to a renoise instrument")
+  
+  hydro2renoise(sys.argv[1], sys.argv[2])
