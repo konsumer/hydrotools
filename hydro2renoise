@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 
+# TODO: handle multi-layer
+
 import sys
 import os
 import time
@@ -17,7 +19,7 @@ tInstrument = Template(open(os.path.join(dirLib, 'Instrument.xml')).read())
 tSample = Template(open(os.path.join(dirLib, 'Sample.xml')).read())
 
 def hydro2renoise(hydrofile, renoisefile):
-  outdir = '/tmp'
+  outdir = os.path.dirname(renoisefile)
   if outdir == '':
     outdir = '.'
   hydro = Hydrogen(hydrofile, outdir)
@@ -31,6 +33,8 @@ def hydro2renoise(hydrofile, renoisefile):
         _filename, file_extension = os.path.splitext(s['file'])
         zip.write(os.path.join(outdir, s['file']), f'SampleData/Sample{samples:02}({i["name"]}){file_extension}')
         samples = samples + 1
+    sampledir, file_extension = os.path.splitext(renoisefile)
+    shutil.rmtree(sampledir)
 
 if __name__ == "__main__":
   try:
