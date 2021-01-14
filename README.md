@@ -13,6 +13,11 @@ getallkits                                    # download all public kits
 
 I'm still working on it.
 
+- `hydro2renoise` - still needs work, but it can do simple drumkits
+- `hydro2sfz` - rudimentary. Seems to work with simple drumkits
+- `hydro2sf2` - not implemented
+
+## usage
 
 In order to use these, you'll need python3 and other dependencies:
 
