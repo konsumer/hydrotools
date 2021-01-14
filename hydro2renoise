@@ -31,7 +31,7 @@ def hydro2renoise(hydrofile, renoisefile):
     for i in hydro.instruments:
       for s in i['layers']:
         _filename, file_extension = os.path.splitext(s['file'])
-        zip.write(os.path.join(outdir, s['file']), f'SampleData/Sample{samples:02}({i["name"]}){file_extension}')
+        zip.write(os.path.join(outdir, s['file']), f'SampleData/Sample{samples:02} ({i["name"]}){file_extension}')
         samples = samples + 1
     sampledir, file_extension = os.path.splitext(renoisefile)
     shutil.rmtree(sampledir)
