@@ -11,11 +11,12 @@ getallkits                                    # download all public kits
 
 ## WIP
 
-I'm still working on it.
+I'm still working on it. None of these are really done, but they have the start of some ideas:
 
-- `hydro2renoise` - still needs work, but it can do simple drumkits
-- `hydro2sfz` - rudimentary. Seems to work with simple drumkits
-- `hydro2sf2` - not implemented
+- `hydro2renoise` - Renoise instrument
+- `hydro2sfz` - SFZ soundfont. 
+- `hydro2pti` - Polyend Tracker beat-sliced instrument
+- `hydro2sf2` - SF2 sound-font
 
 ## usage
 
